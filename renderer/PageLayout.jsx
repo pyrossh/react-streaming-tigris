@@ -2,14 +2,15 @@ import React from 'react'
 import '@blueprintjs/core/lib/css/blueprint.css';
 import './PageLayout.css';
 
-export function PageLayout({ children }) {
+export function PageLayout({ pathname, children }) {
+  const activeClass = (v) => pathname === v ? "navitem-active" : "";
   return (
     <Layout>
       <Sidebar>
-        <a className="navitem" href="/">
+        <a href="/" className={`navitem ${activeClass("/")}`}>
           Home
         </a>
-        <a className="navitem" href="/about">
+        <a href="/about" className={`navitem ${activeClass("/about")}`}>
           About
         </a>
       </Sidebar>

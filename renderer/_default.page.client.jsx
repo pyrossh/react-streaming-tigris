@@ -7,9 +7,9 @@ export const hydrationCanBeAborted = true
 
 let root;
 export async function render(pageContext) {
-  const { Page, pageProps } = pageContext
+  const { Page, pageProps } = pageContext;
   const page = (
-    <PageLayout>
+    <PageLayout pathname={pageContext.urlPathname}>
       <Page {...pageProps} />
     </PageLayout>
   )
