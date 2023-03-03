@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react';
 import Timer from '@/components/Timer/Timer';
 import Counter from '@/components/Counter/Counter';
 import TodoList from '@/components/TodoList/TodoList';

@@ -1,5 +1,5 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { PageContextProvider } from '@/hooks/usePageContext';
 import { PageLayout } from './PageLayout';
 
 export const clientRouting = true
@@ -9,9 +9,11 @@ let root;
 export async function render(pageContext) {
   const { Page, pageProps } = pageContext;
   const page = (
-    <PageLayout pathname={pageContext.urlPathname}>
-      <Page {...pageProps} />
-    </PageLayout>
+    <PageContextProvider value={pageContext}>
+      <PageLayout pathname={pageContext.urlPathname}>
+        <Page {...pageProps} />
+      </PageLayout>
+    </PageContextProvider>
   )
   const container = document.getElementById('page-view');
   if (pageContext.isHydration) {

@@ -1,4 +1,3 @@
-import React from 'react';
 
 export function Page(pageProps) {
   if (pageProps.is404) {

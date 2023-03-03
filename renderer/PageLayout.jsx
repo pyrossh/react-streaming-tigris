@@ -1,18 +1,22 @@
-import React from 'react'
+import usePageContext from '@/hooks/usePageContext';
 import '@blueprintjs/core/lib/css/blueprint.css';
 import './PageLayout.css';
 
-export function PageLayout({ pathname, children }) {
-  const activeClass = (v) => pathname === v ? "navitem-active" : "";
+const NavLink = ({ children, ...props }) => {
+  const { urlPathname } = usePageContext();
+  return <a className={`navitem ${urlPathname === props.href ? "navitem-active" : ""}`} {...props} >{children}</a>
+}
+
+export function PageLayout({ children }) {
   return (
     <Layout>
       <Sidebar>
-        <a href="/" className={`navitem ${activeClass("/")}`}>
+        <NavLink href="/" >
           Home
-        </a>
-        <a href="/about" className={`navitem ${activeClass("/about")}`}>
+        </NavLink>
+        <NavLink href="/about">
           About
-        </a>
+        </NavLink>
       </Sidebar>
       <Content>
         {children}

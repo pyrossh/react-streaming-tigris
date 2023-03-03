@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FormGroup, InputGroup, Button } from "@blueprintjs/core";
+import useQuery from '@/hooks/useQuery';
+import useMutation from '@/hooks/useMutation';
 import { onNewTodo, onLoad } from './TodoList.telefunc.js';
-import { useQuery, useMutation } from '../../hooks/loader.js';
 import css from "./TodoList.module.css";
 
 export default function TodoList() {
   const { data, isRefetching, refetch } = useQuery(onLoad);
   const { mutate, isMutating } = useMutation(onNewTodo);
-  const [draft, setDraft] = useState('')
+  const [draft, setDraft] = useState('');
   const onSubmit = async () => {
     await mutate({ text: draft })
     setDraft('')
