@@ -1,5 +1,5 @@
-import tigrisDB from "../db/index.js";
-import { TodoItemSchema } from "../db/TodoItem.js";
+import tigrisDB from "../services/db.js";
+import { TodoItemSchema } from "../services/todo.js";
 
 try {
   await tigrisDB.initializeBranch();

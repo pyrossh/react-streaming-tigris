@@ -1,5 +1,5 @@
 import { getContext, shield } from 'telefunc';
-import { createTodo, getTodos } from '../../db/TodoItem'
+import { createTodo, getTodos } from '../../services/todo'
 
 const t = shield.type;
 

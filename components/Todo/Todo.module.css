@@ -1,0 +1,14 @@
+.item {
+  list-style-type: none;
+  padding: 1em;
+  border-radius: 0.5em;
+  background-color: #ddd;
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.done {
+  text-decoration: line-through;
+}

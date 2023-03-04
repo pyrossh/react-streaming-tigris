@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FormGroup, InputGroup, Button } from "@blueprintjs/core";
 import useQuery from '@/hooks/useQuery';
 import useMutation from '@/hooks/useMutation';
+import Todo from "../Todo/Todo";
 import { onNewTodo, onLoad } from './TodoList.telefunc.js';
 import css from "./TodoList.module.css";
 
@@ -17,8 +18,8 @@ export default function TodoList() {
   return (
     <div>
       <ul>
-        {data.map((todoItem, i) => (
-          <li key={i}>{todoItem.text}</li>
+        {data.map((item, i) => (
+          <Todo key={i} todo={item} refetch={refetch} />
         ))}
       </ul>
       <FormGroup
