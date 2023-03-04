@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Button, InputGroup } from "@blueprintjs/core";
 import useMutation from '@/hooks/useMutation';
 import { onUpdate, onDelete } from './Todo.telefunc.js';
-// import { TodoPropType } from '@/models/Todo';
+import { TodoPropType } from '@/models/Todo';
 import css from "./Todo.module.css";
 
 const propTypes = {
-  // todo: PropTypes.shape(TodoPropType).isRequired,
+  todo: PropTypes.shape(TodoPropType),
   refetch: PropTypes.func.isRequired,
 }
 
