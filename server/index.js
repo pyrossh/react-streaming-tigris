@@ -1,22 +1,25 @@
 import express from 'express';
-import * as vite from 'vite';
-import { renderPage } from 'vite-plugin-ssr'
-import { telefunc } from 'telefunc'
+import compression from 'compression';
+import { renderPage } from 'vite-plugin-ssr';
+import { telefunc } from 'telefunc';
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production';
 const root = process.cwd();
 
-const app = express()
+const app = express();
+app.use(compression());
 if (isProduction) {
-  app.use(express.static(`${root}/dist/client`))
+  const sirv = await import('sirv');
+  app.use(sirv(`${root}/dist/client`))
 } else {
+  const vite = await import('vite');
   const viteDevMiddleware = (
     await vite.createServer({
       root,
       server: { middlewareMode: true }
     })
   ).middlewares
-  app.use(viteDevMiddleware)
+  app.use(viteDevMiddleware);
 }
 
 app.use(express.text()) // Parse & make HTTP request body available at `req.body`
@@ -36,14 +39,14 @@ app.get('*', async (req, res, next) => {
   const pageContextInit = {
     urlOriginal: req.originalUrl
   }
-  const pageContext = await renderPage(pageContextInit)
-  const { httpResponse } = pageContext
-  if (!httpResponse) return next()
-  const { statusCode, contentType } = httpResponse
-  res.status(statusCode).type(contentType)
-  httpResponse.pipe(res)
+  const pageContext = await renderPage(pageContextInit);
+  const { httpResponse } = pageContext;
+  if (!httpResponse) return next();
+  const { statusCode, contentType } = httpResponse;
+  res.status(statusCode).type(contentType);
+  httpResponse.pipe(res);
 })
 
-const port = process.env.PORT || 3000
-app.listen(port)
-console.log(`Server running at http://localhost:${port}`)
+const port = process.env.PORT || 3000;
+app.listen(port);
+console.log(`Server running at http://localhost:${port}`);

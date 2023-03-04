@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import { Button, InputGroup } from "@blueprintjs/core";
 import useMutation from '@/hooks/useMutation';
-import { onUpdate, onDelete } from './Todo.telefunc.js';
+import { onUpdate, onDelete } from './Todo.telefunc';
 // import { TodoPropType } from '@/models/Todo';
 import css from "./Todo.module.css";
 
