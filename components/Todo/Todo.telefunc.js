@@ -3,7 +3,7 @@ import { updateTodo, deleteTodo } from '../../services/todo';
 
 const t = shield.type;
 
-shield(onUpdate, [{ id: t.string, text: t.string, completed: t.boolean }])
+shield(onUpdate, [{ id: t.string, text: t.string, completed: t.optional(t.boolean) }])
 export async function onUpdate(data) {
   return await updateTodo(data);
 }

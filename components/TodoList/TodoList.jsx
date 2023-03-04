@@ -12,8 +12,8 @@ export default function TodoList() {
   const [draft, setDraft] = useState('');
   const onSubmit = async () => {
     await mutate({ text: draft })
-    setDraft('')
     await refetch();
+    setDraft('');
   }
   return (
     <div>
